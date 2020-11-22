@@ -3,7 +3,8 @@
 <head>
     <title>Blast Off with BEAM!</title>
     <meta charset="UTF-8">
-
+    <script src="./simulation/index.js" charset="utf-8"></script>
+    <link href="./style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css">
     <link href="./css/common.css" rel="stylesheet" type="text/css">
     <link href="./css/lab.css" rel="stylesheet" type="text/css">
@@ -143,7 +144,7 @@ so it's very helpful to test our designs online to make sure our designs work be
 
 <p class="Q3">Question 3: How is the width of the rocket important?</p>
 
-<p class="hide">The width of the rocket should be less than the diameter of the nose cone! Why? If it's wider than the nose cone, then there will be a flat surface
+<p class="hide">The width of the rocket should not exceed the diameter of the nose cone! Why? If it's wider than the nose cone, then there will be a flat surface
   on the side that causes drag. We want the width of the rocket to be as narrow as possible, but it still must be large enough to hold the fuel, and the people/satellites
   that are being sent into space.</p>
 
@@ -157,20 +158,16 @@ so it's very helpful to test our designs online to make sure our designs work be
 <p> Your goal is to make your rocket go as high as possible! Every time you launch a rocket, think about went well and what did not go well, and why. Then,
 keep on updating your simulation accordingly to improve your rocket's performance! </p>
 
+<p> Select one of the following to be the nose cone of your rocket. </p>
+    <!-- <img id="myImage" src="./images/wirednewtonthirdlaw.jpg" style="width:100px"> -->
+		<button class="clickme" onclick="document.getElementById('myImage').src='./images/wirednewtonthirdlaw.jpg'"></button>
+		<button class="clickme2" onclick="document.getElementById('myImage').src='./images/deepfriedlogo.png'"></button>
 
-    <img id="myImage" src="./images/wirednewtonthirdlaw.jpg" style="width:100px">
-		<button class="clickme" onclick="document.getElementById('myImage').src='./images/wirednewtonthirdlaw.jpg'">Click me</button>
-		<button class="clickme2" onclick="document.getElementById('myImage').src='./images/deepfriedlogo.png'">Click me 2</button>
+</main>
 
-<!-- <script type="text/javascript" src="./simulation/main.js">
-  function myFunction(a, b) {
-    return a * b;
-  }
-  alert(myFunction(2, 2));
-  setup();
-  draw();
-</script> -->
+</div>
+<div class="grid">
 
-</main></div>
+</div>
 </body>
 </html>

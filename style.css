@@ -1,0 +1,15 @@
+.grid {
+  width:50%;
+  height: 400px;
+  background-image: url('./images/space-background.png');
+  position: absolute;
+  text-align: center;
+  left: 25%
+}
+.rocket {
+  width: 100px;
+  height: 100px;
+  background-image: url('./images/rocket-launch.svg');
+  position: absolute;
+  margin: auto;
+}
