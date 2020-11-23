@@ -1,15 +1,27 @@
 .grid {
   width:50%;
-  height: 400px;
+  height: 700px;
   background-image: url('./images/space-background.png');
-  position: absolute;
+  position: relative;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
   left: 25%
 }
 .rocket {
-  width: 100px;
-  height: 100px;
-  background-image: url('./images/rocket-launch.svg');
-  position: absolute;
+  width: 300px;
+  height: 300px;
+  position:absolute;
+  background-image: url('./simulation/Rockets/rocket_111.png');
+  bottom: 0;
   margin: auto;
+  max-width: 100%; /* not to stand out from div */
+  max-height: 100%; /* not to stand out from div */
+}
+
+.launch {
+  width:50%;
+  position: relative;
+  left: 25%
 }
