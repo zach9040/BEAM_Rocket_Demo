@@ -1,13 +1,15 @@
 let grid
 let rocket
 let isOver = false
+let isFall = false
 let launchHeight = 0
 let rocketType = ""
-let speed = 0
 let score = 0
+let airtime = 0
 let rising
 let falling
-let rocketBottomSpace
+let fallTimer
+let airTimer
 let cone
 let body
 let fins
@@ -15,7 +17,6 @@ let coneWeights = new Map()
 let bodyWeights = new Map()
 let finsWeights = new Map()
 
-const gravity = 9.8
 const cone_weight = 0.05
 const body_weight = 0.05
 const fins_weight = 0.025
@@ -43,49 +44,95 @@ function calcLaunchHeight(cone, body, fins) {
   return (1 + cone_weight * cone_int + body_weight * body_int + fins_weight * fins_int) * base_launch_height
 }
 
+//Scroll background when rocket flies up
+// var can = document.getElementsByClassName('grid'); 
+// var ctx = can.getContext('2d'); 
+// can.width = 600; 
+// can.height = 600;
+// var img = grid.style.backgroundImage; 
+// var imgHeight = 0
+// var scrollSpeed = 20
+
+// function loop() { 
+//   ctx.drawImage(img, 0, imgHeight)
+//   ctx.drawImage(img, 0, imgHeight - can.height)
+//   imgHeight += scrollSpeed
+//   if (imgHeight == can.height) {
+//       imgHeight = 0
+//   }
+//   if (isFall) { 
+//     return
+//   }
+//   window.requestAnimationFrame(loop)
+// } 
+
 //Set up default rocket in base position
 function createRocket() {
+  rocket = document.createElement('div')
   grid.appendChild(rocket)
-  //Change based on default params
-  launchHeight = calcLaunchHeight(1, 1, 1)
-  rocketType = "111"
   rocket.classList.add('rocket')
-  //NEED TO FIX positioning
+  changeRocket()
 }
 
-// This will be the start function
+//Reset rocket position, score, and airtime
+function reset() {
+  isOver = false
+  isFall = false
+  score = 0
+  airtime = 0
+  clearInterval(airTimer)
+  clearInterval(rising)
+  clearInterval(falling)
+  let scoreHTML = document.getElementById("score")
+  scoreHTML.innerText = "Height: " + score + " m | Flight time: " + airtime + " s"
+  rocket.remove()
+  createRocket()
+}
+
+//This will be the start function
 function launch() {
   launchHeight = calcLaunchHeight(cone, body, fins)
   rocket.style.transition = "transform 1s"
   rocket.style.transform = "translateY(-65%)"
   rising = setInterval(rise, 100)
+  // loop()
+  airTimer = setInterval(timer, 1000)
 }
 
+//Rise for 1 tick until launchHeight is reached
 function rise() {
-    // rocketBottomSpace += 5
-    // rocket.style.bottom = rocketBottomSpace + 'px'
+    let scoreHTML = document.getElementById("score")
     score += 5
-    launchHeight = 100
+    scoreHTML.innerText = "Height: " + score + " m | Flight time: " + airtime + " s"
     if (score > launchHeight) {
+      isFall = true
       clearInterval(rising)
+      clearInterval(airTimer)
       startFall()
     }
 }
 
+//Start falling
 function startFall() {
   rocket.style.transition = "transform 1s"
   rocket.style.transform = "rotate(-40deg)"
   console.log(score)
+  fallTimer = score
   falling = setInterval(fall, 100)
 }
 
+//Fall for 1 tick until ground is reached
 function fall() {
-  // rocketBottomSpace -= 5
-  // rocket.style.bottom = rocketBottomSpace + 'px'
-  if (rocketBottomSpace <= 200) {
+  fall -= 5
+  if (fallTimer <= 0) {
     clearInterval(falling)
     gameOver()
   }
+}
+
+//Times airtime in seconds
+function timer() {
+  airtime += 1
 }
 
 //Draw rocket with default params
@@ -101,16 +148,21 @@ function gameOver() {
     grid.removeChild(grid.firstChild)
   }
   grid.innerHTML = score
-  //Shows launch button again necessary
+  score = 0
+  //Need to reset stuff
 }
+
+//Change rocket functions for buttons
 function changeCone(c) {
   cone = c
   changeRocket()
 }
+
 function changeBody(b) {
   body = b
   changeRocket()
 }
+
 function changeFins(f) {
   fins = f
   changeRocket()
@@ -119,23 +171,21 @@ function changeFins(f) {
 //Change rocket based on params
 function changeRocket() {
   rocketType = cone.toString() + body.toString() + fins.toString()
-  let url = "Rockets/rocket_" + rocketType + ".png"
+  let url = "./simulation/Rockets/rocket_" + rocketType + ".png"
   rocket.style.backgroundImage = "url(" + url + ")"
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   grid = document.querySelector('.grid')
-  rocket = document.createElement('div')
   isOver = false
   launchHeight = 0
-  speed = 0
   score = 0
+  airtime = 0
   cone = 1
   body = 1
   fins = 1
   start()
 })
 
-$(function() {
-  $("input[type=image]").click(function(){ $(this).addClass('selected'); });
-});
+
+  

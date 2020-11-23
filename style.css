@@ -1,6 +1,6 @@
 .grid {
   width:50%;
-  height: 700px;
+  height: 600px;
   background-image: url('./images/space-background.png');
   position: relative;
   text-align: center;
@@ -9,19 +9,24 @@
   overflow: hidden;
   left: 25%
 }
+
 .rocket {
   width: 300px;
   height: 300px;
   position:absolute;
+  margin: auto;
   background-image: url('./simulation/Rockets/rocket_111.png');
   bottom: 0;
-  margin: auto;
   max-width: 100%; /* not to stand out from div */
   max-height: 100%; /* not to stand out from div */
 }
 
-.launch {
-  width:50%;
-  position: relative;
-  left: 25%
+
+.score {
+  font: Roboto;
+  color: white;
+}
+.airtime {
+  font: Roboto;
+  color: white;
 }

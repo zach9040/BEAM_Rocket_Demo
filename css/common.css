@@ -1,4 +1,4 @@
-/*Adapted from UC Berkeley's CS61B website.*/
+/* Adapted from UC Berkeley's CS61B website. */
 
 body {
     font-family: Helvetica, sans-serif;
@@ -134,12 +134,30 @@ whiteout::selection {
   height: 200px;
   font-size: 25px;
 }
+
 .launch {
-  background-position: center;
-  color: red;
-  width: 200px;
-  height: 200px;
   font-size: 25px;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 25%;
+  background-image: url(../images/startup.svg);
+}
+
+.reset {
+    font-size: 25px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 25%;
+    background-image: url(../images/reset.svg);
+}
+
+.big-options {
+  text-align: center;
+  display: flex;
+  margin: auto;
+  justify-content: center;
 }
 
 .clickme2 {

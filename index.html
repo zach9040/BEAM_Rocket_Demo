@@ -109,18 +109,18 @@
     <p>
         In this module, we will be reinforcing our knowledge of forces and <b>Newton’s Third Law</b> and
         how they relate to propulsion by designing paper rockets. We will practice the engineering
-        design process and design the optimal <b>paper rocket</b> that will fly the farthest!
+        design process and design an optimal <b>paper rocket</b> that will fly the farthest!
     </p>
 
     <p>
-        So, how are rockets launched? In the first place, for a rocket to blast off, a force must be applied to luanch it into space.
-        The gasses normally ejected from a rocket end up pushing it upwards due to <b>Newton's Third Law</b>. This opposite force
+        So, how are rockets launched? In the first place, for a rocket to blast off, a force must be applied to launch it into space.
+        Gases are ejected from a rocket end up pushing it upwards due to <b>Newton's Third Law</b>. This opposite force
         is called <b>thrust</b>.
     </p>
 
     <p>
-        People often think the flames of a rocket are what actually propel it, but they're actually mistaken.  The force of
-        <b>thrust</b>, caused by the gasses shot out, are what really propel the rocket upwards.  In this module, we will be obtaining the thrust from
+        People often think the flames of a rocket are what propel it, but they're actually mistaken.  The force of
+        <b>thrust</b>, caused by the gases shot out, are what really propel the rocket upwards.  In this module, we will be obtaining the thrust from
         the air we are blowing into the straw.
     </p>
 
@@ -196,20 +196,13 @@
     </p>
 
     <p> Select one of the following to be the nose cone of your rocket. </p>
-    <!-- <img id="myImage" src="./images/wirednewtonthirdlaw.jpg" style="width:100px"> -->
-    <!-- <button id="flat_top_nose"></button>
-    <button id="triangle_nose"></button>
-    <button id="rounded_nose"></button> -->
+    
     <input type="image" src="images/Rocket Components/flat_top_nose.png" style="height:150px;width:200px;" onclick="changeCone(1)"/>
     <input type="image" src="images/Rocket Components/triangle_nose.png" style="height:150px;width:200px;" onclick="changeCone(2)"/>
     <input type="image" src="images/Rocket Components/rounded_nose.png" style="height:150px;width:200px;" onclick="changeCone(3)"/>
 
-    <!-- <input type="image" src="images/Rocket Components/flat_top_nose.png" style="height:173px;width:312px;" class="clickme" onclick="changeRocket()">
-    <input type="image" src="images/Rocket_Components/triangle_nose.png" style="height:170px;width:262px;"class="clickme" onclick="changeRocket()">
-    <input type="image" src="images/Rocket_Components/rounded_nose.png" class="clickme" onclick="changeRocket()"> -->
-
     <p> Select one of the following to be the fuselage (body) of your rocket. </p>
-    <!-- <img id="myImage" src="./images/wirednewtonthirdlaw.jpg" style="width:100px"> -->
+
     <input type="image" src="images/Rocket Components/skinny_fuselage.png" style="height:400px;width:200px;" onclick="changeBody(1)"/>
     <input type="image" src="images/Rocket Components/normal_fuselage.png" style="height:400px;width:200px;" onclick="changeBody(2)"/>
     <input type="image" src="images/Rocket Components/fat_fuselage.png" style="height:400px;width:200px;" onclick="changeBody(3)"/>
@@ -217,15 +210,18 @@
     <p> Select one of the following to be the fins of your rocket. </p>
     <input type="image" src="images/Rocket Components/good_fins.png" style="height:250px;width:250px;" onclick="changeFins(1)"/>
     <input type="image" src="images/Rocket Components/heavy_fins.png" style="height:250px;width:250px;" onclick="changeFins(2)"/>
-    <!-- <img id="myImage" src="./images/wirednewtonthirdlaw.jpg" style="width:100px"> -->
-    <p><input type="image" class="launch" onclick="launch()"> Launch! </input> </p> 
+    <p> </p>
+    <div class="big-options">
+        <input type="image" src="images/startup.svg" style="height:100px;width:100px;margin:auto" onclick="launch()"/> 
+        <input type="image" src="images/reset.svg" style="height:100px;width:100px;margin:auto" onclick="reset()"/> 
+    </div>
 </main>
 
 </div>
 
 
 <div class="grid">
-
+    <h2 id="score" class="score" style="position:relative;left:20px"> Height: 0 m | Flight time: 0 s </h2>
 </div>
 </body>
 </html>
