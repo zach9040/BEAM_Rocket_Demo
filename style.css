@@ -1,13 +1,11 @@
 .grid {
-  width:50%;
-  height: 600px;
-  background-image: url('./images/space-background.png');
+  height: 800px;
+  background-image: url('./images/still_stars.gif');
   position: relative;
   text-align: center;
   display: flex;
   justify-content: center;
   overflow: hidden;
-  left: 25%
 }
 
 .rocket {
@@ -21,11 +19,11 @@
   max-height: 100%; /* not to stand out from div */
 }
 
-
 .score {
   font: Roboto;
   color: white;
 }
+
 .airtime {
   font: Roboto;
   color: white;

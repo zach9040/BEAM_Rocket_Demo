@@ -44,28 +44,6 @@ function calcLaunchHeight(cone, body, fins) {
   return (1 + cone_weight * cone_int + body_weight * body_int + fins_weight * fins_int) * base_launch_height
 }
 
-//Scroll background when rocket flies up
-// var can = document.getElementsByClassName('grid'); 
-// var ctx = can.getContext('2d'); 
-// can.width = 600; 
-// can.height = 600;
-// var img = grid.style.backgroundImage; 
-// var imgHeight = 0
-// var scrollSpeed = 20
-
-// function loop() { 
-//   ctx.drawImage(img, 0, imgHeight)
-//   ctx.drawImage(img, 0, imgHeight - can.height)
-//   imgHeight += scrollSpeed
-//   if (imgHeight == can.height) {
-//       imgHeight = 0
-//   }
-//   if (isFall) { 
-//     return
-//   }
-//   window.requestAnimationFrame(loop)
-// } 
-
 //Set up default rocket in base position
 function createRocket() {
   rocket = document.createElement('div')
@@ -83,6 +61,7 @@ function reset() {
   clearInterval(airTimer)
   clearInterval(rising)
   clearInterval(falling)
+  grid.style.backgroundImage = "url('./images/still_stars.gif')"
   let scoreHTML = document.getElementById("score")
   scoreHTML.innerText = "Height: " + score + " m | Flight time: " + airtime + " s"
   rocket.remove()
@@ -95,7 +74,7 @@ function launch() {
   rocket.style.transition = "transform 1s"
   rocket.style.transform = "translateY(-65%)"
   rising = setInterval(rise, 100)
-  // loop()
+  grid.style.backgroundImage = "url('./images/moving_stars.gif')"
   airTimer = setInterval(timer, 1000)
 }
 
@@ -114,6 +93,7 @@ function rise() {
 
 //Start falling
 function startFall() {
+  grid.style.backgroundImage = "url('./images/still_stars.gif')"
   rocket.style.transition = "transform 1s"
   rocket.style.transform = "rotate(-40deg)"
   console.log(score)
@@ -171,7 +151,7 @@ function changeFins(f) {
 //Change rocket based on params
 function changeRocket() {
   rocketType = cone.toString() + body.toString() + fins.toString()
-  let url = "./simulation/Rockets/rocket_" + rocketType + ".png"
+  let url = "./images/Rockets/rocket_" + rocketType + ".png"
   rocket.style.backgroundImage = "url(" + url + ")"
 }
 
