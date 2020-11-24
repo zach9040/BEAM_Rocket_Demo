@@ -1,5 +1,6 @@
 # BEAM_Rocket_Demo
 Site Project for BEAM Fall 2020
+
 Made by Ishan Gurnani, Zachary Huang, Parker Lum, and Jacob Yim.
 
 ## Website
