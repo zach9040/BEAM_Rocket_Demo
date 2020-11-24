@@ -77,7 +77,7 @@ function launch() {
   if (!launched) {
     launchHeight = calcLaunchHeight(cone, body, fins)
     rocket.style.transition = "transform 1s"
-    rocket.style.transform = "translateY(-65%)"
+    rocket.style.transform = "translateY(-95%)"
     rising = setInterval(rise, 100)
     grid.style.backgroundImage = "url('./images/moving_stars.gif')"
     airTimer = setInterval(timer, 1000)
