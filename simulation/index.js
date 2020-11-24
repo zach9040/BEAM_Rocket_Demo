@@ -1,7 +1,12 @@
+/*
+Simulation for BEAM Fall 2020 Site Project. Made by BBWRBBCTHSCSCCLST (Ishan Gurnani, Zachary Huang, Parker Lum, and Jacob Yim)
+
+Simulates a rocket launch with interchangable parts. Rocket height varies depending on choice of parts.
+*/
+
 let grid
 let rocket
-let isOver = false
-let isFall = false
+let launched = false
 let launchHeight = 0
 let rocketType = ""
 let score = 0
@@ -20,12 +25,12 @@ let finsWeights = new Map()
 const cone_weight = 0.05
 const body_weight = 0.05
 const fins_weight = 0.025
-const base_launch_height = 100
+const base_launch_height = 150
 
 //Set cone weights
 coneWeights.set(1, 0)  //Flat cone
-coneWeights.set(2, 30) //Pointed cone
-coneWeights.set(3, 15) //Rounded cone
+coneWeights.set(2, 40) //Pointed cone
+coneWeights.set(3, 20) //Rounded cone
 
 //Set body weights
 bodyWeights.set(1, 20) //Small body
@@ -33,7 +38,7 @@ bodyWeights.set(2, 10) //Medium body
 bodyWeights.set(3, 0)  //Large body
 
 //Set fins weights
-finsWeights.set(1, 10) //Small fins
+finsWeights.set(1, 15) //Small fins
 finsWeights.set(2, 0)  //Large fins
 
 //Calculate launch height
@@ -54,8 +59,7 @@ function createRocket() {
 
 //Reset rocket position, score, and airtime
 function reset() {
-  isOver = false
-  isFall = false
+  launched = false
   score = 0
   airtime = 0
   clearInterval(airTimer)
@@ -70,12 +74,15 @@ function reset() {
 
 //This will be the start function
 function launch() {
-  launchHeight = calcLaunchHeight(cone, body, fins)
-  rocket.style.transition = "transform 1s"
-  rocket.style.transform = "translateY(-65%)"
-  rising = setInterval(rise, 100)
-  grid.style.backgroundImage = "url('./images/moving_stars.gif')"
-  airTimer = setInterval(timer, 1000)
+  if (!launched) {
+    launchHeight = calcLaunchHeight(cone, body, fins)
+    rocket.style.transition = "transform 1s"
+    rocket.style.transform = "translateY(-65%)"
+    rising = setInterval(rise, 100)
+    grid.style.backgroundImage = "url('./images/moving_stars.gif')"
+    airTimer = setInterval(timer, 1000)
+    launched = true
+  }
 }
 
 //Rise for 1 tick until launchHeight is reached
@@ -84,30 +91,18 @@ function rise() {
     score += 5
     scoreHTML.innerText = "Height: " + score + " m | Flight time: " + airtime + " s"
     if (score > launchHeight) {
-      isFall = true
       clearInterval(rising)
       clearInterval(airTimer)
-      startFall()
+      stopRise()
     }
 }
 
 //Start falling
-function startFall() {
+function stopRise() {
   grid.style.backgroundImage = "url('./images/still_stars.gif')"
   rocket.style.transition = "transform 1s"
   rocket.style.transform = "rotate(-40deg)"
   console.log(score)
-  fallTimer = score
-  falling = setInterval(fall, 100)
-}
-
-//Fall for 1 tick until ground is reached
-function fall() {
-  fall -= 5
-  if (fallTimer <= 0) {
-    clearInterval(falling)
-    gameOver()
-  }
 }
 
 //Times airtime in seconds
@@ -122,14 +117,13 @@ function start() {
 
 //What happens when rocket is done with animation and reaches launch height
 function gameOver() {
-  isOver = true
+  launched = false
   while (grid.firstChild) {
     console.log('remove')
     grid.removeChild(grid.firstChild)
   }
   grid.innerHTML = score
   score = 0
-  //Need to reset stuff
 }
 
 //Change rocket functions for buttons
@@ -157,7 +151,6 @@ function changeRocket() {
 
 document.addEventListener('DOMContentLoaded', () => {
   grid = document.querySelector('.grid')
-  isOver = false
   launchHeight = 0
   score = 0
   airtime = 0
